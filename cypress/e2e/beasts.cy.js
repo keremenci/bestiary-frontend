@@ -16,7 +16,6 @@ describe('Beasts Management', () => {
     });
   
     it('should add a new beast', () => {
-        cy.visit('/');
         cy.get('input[name="BeastName"]').clear().type('NewBeast');
         cy.get('input[name="Type"]').clear().type('Creature');
         cy.get('input[name="CR"]').clear().type('1');
@@ -59,7 +58,6 @@ describe('Beasts Management', () => {
       });
     
       it('should edit the type of an existing beast', () => {
-        cy.visit('/');
         cy.get('table tbody tr').first().find('button').contains('Edit').click();
         cy.get('input[name="Type"]').clear().type('Updated Creature');
         cy.get('button').contains('Save').click();
