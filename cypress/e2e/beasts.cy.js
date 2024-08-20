@@ -66,9 +66,9 @@ describe('Beasts Management', () => {
     
       after(() => {
         // Delete the beast after the test
-        cy.request('DELETE', '/beasts/Test Beast').then((response) => {
+        /*cy.request('DELETE', '/beasts/Test Beast').then((response) => {
           expect(response.status).to.eq(200);
-        });
+        });*/ // TODO: enter backend url here
       });
   
     /*it('should delete a beast', () => {
