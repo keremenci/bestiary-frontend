@@ -58,17 +58,17 @@ describe('Beasts Management', () => {
         });
       });
     
-      it('should edit an existing beast', () => {
+      it('should edit the type of an existing beast', () => {
         cy.visit('/');
         cy.get('table tbody tr').first().find('button').contains('Edit').click();
-        cy.get('input[name="BeastName"]').clear().type('Updated Beast');
+        cy.get('input[name="Type"]').clear().type('Updated Creature');
         cy.get('button').contains('Save').click();
-        cy.get('table tbody tr').first().should('contain', 'Updated Beast');
+        cy.get('table tbody tr').first().should('contain', 'Updated Creature');
       });
     
       after(() => {
         // Delete the beast after the test
-        cy.request('DELETE', '/beasts/Updated Beast').then((response) => {
+        cy.request('DELETE', '/beasts/Test Beast').then((response) => {
           expect(response.status).to.eq(200);
         });
       });
