@@ -68,7 +68,7 @@ const BeastList = ({ onDelete }) => {
               <tr key={beast.BeastName}>
                 {editingBeast === beast.BeastName ? (
                   <>
-                    <td>{beast.BeastName}</td> {/* Render as non-editable text */}
+                    <td>{beast.BeastName}</td>
                     <td>
                       <input
                         type="text"
