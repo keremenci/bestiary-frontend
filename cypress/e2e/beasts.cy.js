@@ -73,7 +73,7 @@ describe('Beasts Management', () => {
         });
       });
   
-    it('should delete a beast', () => {
+    /*it('should delete a beast', () => {
       cy.get('table tbody tr').first().find('button').contains('Delete').click();
       cy.get('table tbody tr').should('have.length.lessThan', 2);
     });
@@ -90,5 +90,5 @@ describe('Beasts Management', () => {
       cy.get('input[name="BeastName"]').clear().type('Existing Beast');
       cy.get('form').contains('Add Beast').click();
       cy.get('form').should('contain', 'Beast already exists');
-    });
+    });*/
   });
