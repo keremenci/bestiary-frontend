@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+// src/App.js
+import React from 'react';
+import BeastList from './components/BeastList';
+import BeastForm from './components/BeastForm';
+import axios from 'axios';
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const handleDelete = (beastName) => {
+    axios.delete(`/beasts/${beastName}`)
+      .then(() => window.location.reload())
+      .catch(error => console.error('Error deleting beast:', error));
+  };
+
+  const handleSave = () => {
+    window.location.reload();
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Bestiary</h1>
+      <BeastList onDelete={handleDelete} />
+      <BeastForm onSave={handleSave} />
     </div>
   );
-}
+};
 
 export default App;
