@@ -1,0 +1,13 @@
+services:
+  frontend-local:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:80'
+    networks:
+      - bestiary_network
+
+networks_local:
+  bestiary_network:
+    external: true

@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: ${IMAGE_NAME}:${IMAGE_TAG}
+    ports:
+      - '3000:80'
+    networks:
+      - bestiary_network
+
+networks:
+  bestiary_network:
+    external: true
