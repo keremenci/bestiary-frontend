@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = 'https://bestiary.keremenci.com/api';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -43,7 +43,7 @@ jobs:
         username: bestiary
         key: ${{ secrets.EC2_DEPLOYER_SSH_KEY }}
         source: "docker-compose.yml"
-        target: "/home/bestiary"
+        target: "/home/bestiary/frontend"
 
     - name: SSH to EC2 and deploy frontend
       uses: appleboy/ssh-action@v1.0.3
@@ -54,9 +54,10 @@ jobs:
         envs: IMAGE_NAME, IMAGE_TAG
         script_stop: true
         script: |
+          mkdir -p frontend
           docker network create bestiary_network || true
-          echo "IMAGE_NAME=$IMAGE_NAME" > .env
-          echo "IMAGE_TAG=$IMAGE_TAG" >> .env
-          docker compose config
-          docker compose down
-          docker compose up -d
+          echo "IMAGE_NAME=$IMAGE_NAME" > frontend/.env
+          echo "IMAGE_TAG=$IMAGE_TAG" >> frontend/.env
+          docker compose -f frontend/docker-compose.yml config
+          docker compose -f frontend/docker-compose.yml down
+          docker compose -f frontend/docker-compose.yml up -d
