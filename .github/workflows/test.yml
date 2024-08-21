@@ -57,7 +57,8 @@ jobs:
           --health-retries 5
 
       backend:
-        image: ghcr.io/keremenci/bestiary-crud-api:latest
+        # Apparently, the latest image is not tagged as latest by default in ghcr.io TODO: fix this to use latest image
+        image: ghcr.io/keremenci/bestiary-crud-api:553ff768c2f3e805080122c40126dc72016f63be
         env:
           DATABASE_URL: postgres://bestiary:testpass@localhost:5432/bestiary
         ports:
