@@ -30,13 +30,13 @@ jobs:
     - name: Checkout backend
       uses: actions/checkout@v4
       with:
-        repository: keremenci/bestiary-backend
+        repository: keremenci/bestiary-crud
         path: backend
     
     - name: Start backend
       env:
         DATABASE_URL: postgres://bestiary:testpass@localhost:5432/bestiary
-        IMAGE_NAME: ghcr.io/keremenci/bestiary-backend
+        IMAGE_NAME: ghcr.io/keremenci/bestiary-crud-api
       run: |
         export IMAGE_TAG=$(git -C ./backend rev-parse HEAD) \
         && docker network create bestiary_network || true \
