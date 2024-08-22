@@ -27,6 +27,22 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Checkout backend
+      uses: actions/checkout@v4
+      with:
+        repository: keremenci/bestiary-backend
+        path: backend
+    
+    - name: Start backend
+      env:
+        DATABASE_URL: postgres://bestiary:testpass@localhost:5432/bestiary
+        IMAGE_NAME: ghcr.io/keremenci/bestiary-backend
+      run: |
+        export IMAGE_TAG=$(git -C ./backend rev-parse HEAD) \
+        && docker network create bestiary_network || true \
+        && docker compose -f backend/docker-compose.yml config \
+        && docker compose -f backend/docker-compose.yml up -d
+
     - name: Install dependencies
       run: npm install
 
@@ -55,12 +71,3 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-      backend:
-        # Apparently, the latest image is not tagged as latest by default in ghcr.io TODO: fix this to use latest image
-        image: ghcr.io/keremenci/bestiary-crud-api:553ff768c2f3e805080122c40126dc72016f63be
-        env:
-          BESTIARY_DATABASE_URL: postgres://bestiary:testpass@localhost:5432/bestiary
-        ports:
-          - 8080:8080
-        options: --health-cmd "curl --fail http://localhost:8080 || exit 1" --health-interval 10s --health-timeout 5s --health-retries 3
