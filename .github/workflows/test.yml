@@ -56,18 +56,3 @@ jobs:
       uses: cypress-io/github-action@v5
       with:
         spec: cypress/e2e/beasts.cy.js
-
-    services:
-      postgres:
-        image: postgres:16-alpine
-        env:
-          POSTGRES_DB: bestiary
-          POSTGRES_USER: bestiary
-          POSTGRES_PASSWORD: testpass
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
