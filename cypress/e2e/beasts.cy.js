@@ -99,7 +99,7 @@ describe('Beasts Management', () => {
   });
 
   it('should handle displaying when no beasts available', () => {
-    cy.intercept('GET', '/beasts', []).as('fetchBeasts');
+    cy.intercept('GET', '/api/beasts', []).as('fetchBeasts');
     cy.visit('/');
     cy.wait('@fetchBeasts');
     cy.get('table tbody tr td').should('contain', 'No beasts available.');
