@@ -44,7 +44,10 @@ jobs:
         && docker compose -f backend/docker-compose.yml up -d
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        rm -rf node_modules \
+        && rm -f package-lock.json \
+        && npm install
 
     - name: Start the application
       run: npm start &
