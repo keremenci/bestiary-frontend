@@ -48,3 +48,4 @@ jobs:
       with:
         spec: cypress/e2e/beasts.cy.js
         start: npm start
+        browser: chrome
