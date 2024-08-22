@@ -47,3 +47,4 @@ jobs:
       uses: cypress-io/github-action@v6
       with:
         spec: cypress/e2e/beasts.cy.js
+        start: npm start
